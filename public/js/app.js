@@ -66,7 +66,10 @@ function renderMovies(movies) {
     const details = document.createElement("p");
     details.textContent = `${movie.genre} · ${movie.year} · Рейтинг: ${movie.rating} · ${movie.duration}`;
     const sessions = document.createElement("p");
-    sessions.textContent = `Ближайший сеанс: ${movie.sessions[0] || "нет сеансов"} · Теги: ${movie.tags.join(", ") || "нет"}`;
+    const schedule = movie.sessions.length
+      ? "Сеансы: " + movie.sessions.join(", ") + " (ближайший " + movie.sessions[0] + ")"
+      : "Сеансы пока не назначены";
+    sessions.textContent = `${schedule} · Теги: ${movie.tags.join(", ") || "нет"}`;
     card.append(title, details, sessions);
     list.append(card);
   }
